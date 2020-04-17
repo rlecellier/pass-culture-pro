@@ -1,0 +1,15 @@
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.blackline {
+  display: block;
+  border-style: inset;
+  border-width: 1px;
+}
+
+hr {
+  background-color: transparent;
+}

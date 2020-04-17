@@ -7,6 +7,8 @@
     "node": ">=12 <13"
   },
   "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
     "@sentry/browser": "^5.7.0",
     "autoprefixer": "9.6.1",
     "babel-core": "6.26.3",
@@ -94,7 +96,9 @@
     "webpack-manifest-plugin": "2.0.4",
     "whatwg-fetch": "3.0.0",
     "with-query-router": "3.2.1",
-    "with-react-redux-login": "1.7.0"
+    "with-react-redux-login": "1.7.0",
+    "react-table": "latest",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",

@@ -1,16 +1,16 @@
-import { connect } from 'react-redux'
-import { compose } from 'redux'
-
-import Bookings from './Bookings'
-import { withRequiredLogin } from '../../hocs'
-import { API_URL } from '../../../utils/config'
+import {connect} from 'react-redux'
+import {compose} from 'redux'
+import {withRequiredLogin} from '../../hocs'
+import {API_URL} from '../../../utils/config'
+import BookingsV2 from "../BookingsV2/BookingsV2"
+import Bookings from "./Bookings"
 
 const buildPathToBookingFile = (
   bookingsFrom,
   bookingsTo,
   isFilteredByDigitalVenues,
   offerId,
-  venueId
+  venueId,
 ) => {
   let pathToFile = `${API_URL}/bookings/csv`
   let filtersToApply = []
@@ -43,15 +43,15 @@ const buildPathToBookingFile = (
 }
 
 export const mapStateToProps = state => {
-  const { bookingSummary = {} } = state
-  const { bookingsFrom, bookingsTo, isFilteredByDigitalVenues, offerId, venueId } = bookingSummary
+  const {bookingSummary = {}} = state
+  const {bookingsFrom, bookingsTo, isFilteredByDigitalVenues, offerId, venueId} = bookingSummary
 
   const pathToCsvFile = buildPathToBookingFile(
     bookingsFrom,
     bookingsTo,
     isFilteredByDigitalVenues,
     offerId,
-    venueId
+    venueId,
   )
 
   const showButtons =
@@ -71,5 +71,5 @@ export const mapStateToProps = state => {
 
 export default compose(
   withRequiredLogin,
-  connect(mapStateToProps)
-)(Bookings)
+  connect(mapStateToProps),
+)(BookingsV2)
