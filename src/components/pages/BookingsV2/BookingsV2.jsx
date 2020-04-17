@@ -1,5 +1,5 @@
 import React from 'react'
-import {useTable} from "react-table"
+import {useSortBy, useTable} from "react-table"
 import styled from 'styled-components'
 import makeData from "./data"
 import Main from '../../layout/Main'
@@ -10,7 +10,7 @@ const Styles = styled.div`
   
   table {
     border-spacing: 0;
-    border: 1px solid black;
+     border-right: 1px solid black;
   
     tr {
       :last-child {
@@ -43,9 +43,11 @@ function Table({columns, data}) {
     rows,
     prepareRow,
   } = useTable({
-    columns,
-    data,
-  })
+      columns,
+      data,
+    },
+    useSortBy,
+  )
 
   // Render the UI for your table
   return (
@@ -54,7 +56,17 @@ function Table({columns, data}) {
       {headerGroups.map(headerGroup => (
         <tr {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map(column => (
-            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+            <th {...column.getHeaderProps(column.getSortByToggleProps)}>
+              {column.render('Header')}
+              {/* Add a sort direction indicator */}
+              <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
+            </th>
           ))}
         </tr>
       ))}
@@ -84,26 +96,32 @@ function BookingsV2() {
           {
             Header: 'ID',
             accessor: 'id',
+            manualSortBy: 'basic',
           },
           {
             Header: 'date',
             accessor: 'bookingDate',
+            sortBy: 'basic',
           },
           {
             Header: 'prix',
             accessor: 'price',
+            sortBy: 'basic',
           },
           {
             Header: 'Nb de réservations',
             accessor: 'bookingNumber',
+            sortBy: 'basic',
           },
           {
             Header: 'NB place restants',
             accessor: 'quantity',
+            sortBy: 'basic',
           },
           {
             Header: 'Statut',
             accessor: 'status',
+            sortBy: 'basic',
           },
         ],
       },
