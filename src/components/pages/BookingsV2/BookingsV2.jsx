@@ -4,14 +4,13 @@ import styled from 'styled-components'
 import makeData from "./data"
 import Main from '../../layout/Main'
 import Titles from "../../layout/Titles/Titles"
-
 const Styles = styled.div`
   padding: 1rem;
-  
+
   table {
     border-spacing: 0;
      border-right: 1px solid black;
-  
+
     tr {
       :last-child {
         td {
@@ -19,14 +18,14 @@ const Styles = styled.div`
         }
       }
     }
-  
+
     th,
     td {
       margin: 0;
       padding: 0.5rem;
       border-bottom: 1px solid black;
       border-right: 1px solid black;
-  
+
       :last-child {
         border-right: 0;
       }
@@ -35,7 +34,8 @@ const Styles = styled.div`
 `
 
 function Table({columns, data}) {
-  // Use the state and functions returned from useTable to build your UI
+
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -193,26 +193,31 @@ function BookingsV2() {
             Header: 'ID',
             accessor: 'id',
             manualSortBy: 'basic',
+          disableFilters:true
           },
           {
             Header: 'date',
             accessor: 'bookingDate',
             sortBy: 'basic',
+          disableFilters:true
           },
           {
             Header: 'prix',
             accessor: 'price',
             sortBy: 'basic',
+          disableFilters:true
           },
           {
             Header: 'Nb de réservations',
             accessor: 'bookingNumber',
             sortBy: 'basic',
+          disableFilters:true
           },
           {
             Header: 'NB place restants',
             accessor: 'quantity',
             sortBy: 'basic',
+          disableFilters:true
           },
           {
             Header: 'Statut',
@@ -236,6 +241,22 @@ function BookingsV2() {
         <Table columns={columns} data={data}/>
       </Styles>
     </Main>
+  )
+}
+
+function DefaultColumnFilter({
+                               column: { filterValue, preFilteredRows, setFilter },
+                             }) {
+  const count = preFilteredRows.length
+
+  return (
+    <input
+      value={filterValue || ''}
+      onChange={e => {
+        setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
+      }}
+      placeholder={`Search ${count} records...`}
+    />
   )
 }
 
