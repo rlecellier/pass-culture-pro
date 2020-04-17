@@ -13,7 +13,7 @@ const newStock = () => {
       price: Math.floor(Math.random() * 30),
       bookingNumber: Math.floor(Math.random() * 100),
       quantity: Math.floor(Math.random() * 100),
-      status: "status"
+      status: Math.random().toString(36).substring(7),
   }
 }
 
