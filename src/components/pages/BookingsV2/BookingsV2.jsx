@@ -183,6 +183,12 @@ function SelectColumnFilter({
   )
 }
 
+function searchColumnFilter() {
+  return (
+    <input type="text" name="toto" id="A" />
+  )
+}
+
 function BookingsV2() {
   const columns = React.useMemo(
     () => [
@@ -192,8 +198,7 @@ function BookingsV2() {
           {
             Header: 'ID',
             accessor: 'id',
-            manualSortBy: 'basic',
-          disableFilters:true
+            Filter: searchColumnFilter
           },
           {
             Header: 'date',
@@ -244,8 +249,7 @@ function BookingsV2() {
   )
 }
 
-function DefaultColumnFilter({
-                               column: { filterValue, preFilteredRows, setFilter },
+function DefaultColumnFilter({ column: { filterValue, preFilteredRows, setFilter },
                              }) {
   const count = preFilteredRows.length
 
