@@ -28,58 +28,45 @@ class BookingV2 extends Component {
   }
 
   render() {
-    const columns = [{
-      Header: 'Réservations',
-      columns: [
-        {
-          Header: <span className="grey_value">ID<Icon svg="ico-filter" /></span>,
-          accessor: 'id',
-          disableFilters: true,
-        },
-        {
-          Header: <span className="grey_value">Beneficiaire<Icon svg="ico-filter" /></span>,
-          accessor: 'beneficiaire',
-          disableFilters: true,
-          Cell: props => <div><span>{props.value.firstname} </span><br/><span className="grey_value">{props.value.lastname}</span></div>
-        },
-        {
-          Header: 'Offre',
-          accessor: 'offre',
-          disableFilters: true,
-        },
-        {
-          Header: 'date',
-          accessor: 'bookingDate',
-          sortBy: 'basic',
-          disableFilters: true,
-        },
-        {
-          Header: 'prix',
-          accessor: 'price',
-          sortBy: 'basic',
-          disableFilters: true,
-        },
-        {
-          Header: 'Nb de réservations',
-          accessor: 'bookingNumber',
-          sortBy: 'basic',
-          disableFilters: true,
-        },
-        {
-          Header: 'NB place restants',
-          accessor: 'quantity',
-          sortBy: 'basic',
-          disableFilters: true,
-        },
-        {
-          Header: 'Statut',
-          accessor: 'status',
-          sortBy: 'alpha',
-          Filter: SelectColumnFilter,
-          filter: 'includes',
-        },
-      ],
-    }]
+    const columns = [
+      {
+        Header: <span className="grey_value">ID<Icon svg="ico-filter"/></span>,
+        accessor: 'id',
+        disableFilters: true,
+      },
+      {
+        Header: <span className="grey_value">Beneficiaire<Icon svg="ico-filter"/></span>,
+        accessor: 'beneficiaire',
+        disableFilters: true,
+        Cell: props => <div><span>{props.value.firstname} </span><br/><span
+          className="grey_value">{props.value.lastname}</span></div>,
+      },
+      {
+        Header: '',
+        accessor: 'isDuo',
+        disableFilters: true,
+        Cell: props => <div>{props.value ? <span className="duo">Duo</span> : ''}</div>,
+      },
+      {
+        Header: 'Offre',
+        accessor: 'offre',
+        disableFilters: true,
+      },
+      {
+        Header: 'date',
+        accessor: 'bookingDate',
+        sortBy: 'basic',
+        disableFilters: true,
+      },
+      {
+        Header: 'Statut',
+        accessor: 'status',
+        sortBy: 'alpha',
+        Filter: SelectColumnFilter,
+        filter: 'includes',
+        Cell: props => <span className="status">{props.value}</span>,
+      },
+    ]
 
     return (
       <Main name="bookings">
@@ -113,6 +100,7 @@ const Styles = styled.div`
     border-spacing: 0;
      border: 1px solid black;
      margin-bottom: 15px;
+     width: 100%;
 
     tr {
       :last-child {
@@ -120,6 +108,20 @@ const Styles = styled.div`
           border-bottom: 0;
         }
       }
+    }
+    
+    .status {
+      border-radius: 5px;
+      background-color: #99C1FF;
+      color: #004EC6;
+      padding: 2px 5px;
+    }
+    
+    .duo {
+      border-radius: 5px;
+      background-color: #FFB0FF;
+      color: #CC007C;
+      padding: 2px 5px;
     }
     
     .grey_value {
@@ -152,8 +154,7 @@ function Table({columns, data}) {
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize,
-    state: {pageIndex, pageSize},
+    state: {pageIndex },
   } = useTable({
       columns,
       data,
@@ -228,30 +229,6 @@ function Table({columns, data}) {
         {pageIndex + 1} of {pageOptions.length}
       </strong>{' '}
     </span>
-        <span>
-            | Go to page:{' '}
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
-            onChange={e => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0
-              gotoPage(page)
-            }}
-            style={{width: '100px'}}
-          />
-      </span>{' '}
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[10, 20, 30, 40, 50].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
       </div>
     </div>
   )
