@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from "prop-types"
 
 const PrimaryButton = ({ disabled, id, name, onClick, text, type }) => (
+  // eslint-disable-next-line
   <button
     className="primary-button"
     disabled={disabled}
