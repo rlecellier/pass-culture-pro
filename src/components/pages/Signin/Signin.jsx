@@ -7,6 +7,7 @@ import Logo from '../../layout/Logo'
 import Main from '../../layout/Main'
 import { mapApiToBrowser } from '../../../utils/translate'
 import { UNAVAILABLE_ERROR_PAGE } from '../../../utils/routes'
+import { ROOT_PATH } from '../../../utils/config'
 
 class Signin extends PureComponent {
   onHandleSuccessRedirect = (state, action) => {
@@ -113,10 +114,18 @@ class Signin extends PureComponent {
                         {'Créer un compte'}
                       </Link>
                       <SubmitButton
-                        className="primary-button"
+                        className="secondary-button"
                         id="signin-submit-button"
                       >
-                        {'Se connecter'}
+                        <img
+                          alt="ico-external-site"
+                          className="selected"
+                          height="40px"
+                          src={`${ROOT_PATH}/icons/ico-external-site-red.svg`}
+                        />
+                        <span>
+                          {'Se connecter'}
+                        </span>
                       </SubmitButton>
                     </div>
                   </Form>
