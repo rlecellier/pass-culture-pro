@@ -1,6 +1,8 @@
+@import '../../../../src/styles/global/_fonts.scss';
+
 .no-match {
-  background-image: $linear-gradient-to-bottom-right;
-  color: $white;
+  background-color: black;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,13 +12,13 @@
   .nm-title {
     @include hero();
 
-    padding-top: rem(32px);
+    padding-top: 2rem;
   }
 
   .nm-subtitle {
     @include title2();
 
-    padding-top: rem(22px);
+    padding-top: 1.2rem;
   }
 
   .nm-redirection-link {
@@ -24,14 +26,14 @@
 
     align-items: center;
     background-color: transparent;
-    border: 2px solid $white;
-    border-radius: rem(24px);
-    color: $white;
+    border: 2px solid white;
+    border-radius: 1.25rem;
+    color: white;
     cursor: pointer;
     justify-content: center;
-    margin: rem(48px) auto 0 auto;
-    max-height: rem(50px);
+    margin: 3rem auto 0 auto;
+    max-height: 3.1rem;
     outline: none;
-    padding: rem(12px) rem(52px);
+    padding: .8rem 3.2rem;
   }
 }
