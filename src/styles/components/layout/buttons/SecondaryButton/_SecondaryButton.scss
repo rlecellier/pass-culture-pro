@@ -10,12 +10,20 @@
   line-height: rem(36px);
   padding: 0 rem(16px);
 
+  svg {
+    margin-right: rem(16px);
+  }
+
   &:active,
   &:hover,
   &:focus {
     background-color: $primary-dark;
     border: 2px solid $primary-dark;
     color: $white;
+
+    svg {
+      filter: brightness(0) invert(1);
+    }
   }
 
   &:focus {
